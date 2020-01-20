@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ms-loading":"_components/loading/loading"
+  }
+}

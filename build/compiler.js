@@ -6,6 +6,7 @@ const rename = require('gulp-rename');
 const postcss = require('gulp-postcss');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
+const watch = require('gulp-watch')
 
 const src = path.resolve(__dirname, '../packages');
 const icons = path.resolve(__dirname, '../node_modules/@vant/icons');
@@ -83,11 +84,11 @@ tasks.buildExample = gulp.series(
     () =>
       gulp.src(`${icons}/**/*`).pipe(gulp.dest(`${exampleDir}/@vant/icons`)),
     () => {
-      gulp.watch(`${src}/**/*.ts`, tsCompiler(exampleDir, exampleConfig));
-      gulp.watch(`${src}/**/*.less`, lessCompiler(exampleDir));
-      gulp.watch(`${src}/**/*.wxml`, copier(exampleDir, 'wxml'));
-      gulp.watch(`${src}/**/*.wxs`, copier(exampleDir, 'wxs'));
-      gulp.watch(`${src}/**/*.json`, copier(exampleDir, 'json'));
+      watch(`${src}/**/*.ts`, tsCompiler(exampleDir, exampleConfig));
+      watch(`${src}/**/*.less`, lessCompiler(exampleDir));
+      watch(`${src}/**/*.wxml`, copier(exampleDir, 'wxml'));
+      watch(`${src}/**/*.wxs`, copier(exampleDir, 'wxs'));
+      watch(`${src}/**/*.json`, copier(exampleDir, 'json'));
     }
   )
 );
